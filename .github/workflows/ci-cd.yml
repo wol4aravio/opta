@@ -28,6 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' }}
     steps:
+    - name: Dummy
       run: echo 1
     # - uses: actions/checkout@v3
     # - name: Set up Python 3.10
