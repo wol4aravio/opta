@@ -7,14 +7,12 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         python-version: ["3.8", "3.9", "3.10"]
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
@@ -26,3 +24,18 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install poetry
         poetry install
+  publish:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' }}
+    steps:
+      run: echo 1
+    # - uses: actions/checkout@v3
+    # - name: Set up Python 3.10
+    #   uses: actions/setup-python@v3
+    #   with:
+    #     python-version: 3.10
+    # - name: Install poetry & dependencies
+    #   run: |
+    #     python -m pip install --upgrade pip
+    #     python -m pip install poetry
+    #     poetry install
