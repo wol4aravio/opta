@@ -2,7 +2,11 @@ import numpy as np
 import numpy.testing as npt
 import pytest
 
-from opta.tools.vectors import bound_vector, generate_vector_in_area
+from opta.tools.vectors import (
+    bound_vector,
+    generate_vector_in_area,
+    generate_vector_in_sphere,
+)
 
 
 def test_bound_vector_1():
@@ -30,3 +34,18 @@ def test_bound_vector_N(_):
     vector = generate_vector_in_area(search_area)
     vector = bound_vector(vector, bounds)
     assert ((bounds[:, 0] <= vector) & (vector <= bounds[:, 1])).all()
+
+
+@pytest.mark.parametrize("_", range(100))
+def test_generate_vector_in_area(_):
+    search_area = np.array([[-10, 10], [-10, 10]])
+    vector = generate_vector_in_area(search_area)
+    assert ((search_area[:, 0] <= vector) & (vector <= search_area[:, 1])).all()
+
+
+@pytest.mark.parametrize("_", range(100))
+def test_generate_vector_in_sphere(_):
+    initial = np.array([0, 0, 0])
+    radius = 2.5
+    generated = generate_vector_in_sphere(initial, radius)
+    assert np.linalg.norm(generated - initial) <= radius
