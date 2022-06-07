@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "opta"
-version = "0.2.0"
+version = "0.2.1"
 description = ""
 authors = ["wol4aravio <panovskiy.v@yandex.ru>"]
 license = "MIT"
