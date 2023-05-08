@@ -39,7 +39,7 @@ class OptimizationAlgorithm(ABC):
     def optimize(self, f, search_area, number_of_iterations, **kwargs):
         """Optimization cycle of target function `f` on `search_area`
         that consists of initialization, followed by repeating cycle of
-        initialization procedures (until termination criterion is fullfilled),
+        iteration procedures (until termination criterion is fullfilled),
         and termination"""
         if not kwargs.get("skip_init", False):
             self.initialize(f, search_area)
