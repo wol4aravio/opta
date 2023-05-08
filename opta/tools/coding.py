@@ -4,6 +4,8 @@ import numpy
 
 
 class EncodeFromNumpy(json.JSONEncoder):
+    """Serialization utilities for numpy (encoding)"""
+
     def default(self, o):
         if isinstance(o, numpy.ndarray):
             return {"_kind_": "ndarray", "_value_": o.tolist()}
@@ -11,6 +13,8 @@ class EncodeFromNumpy(json.JSONEncoder):
 
 
 class DecodeToNumpy(json.JSONDecoder):
+    """Serialization utilities for numpy (decoding)"""
+
     def __init__(self, *args, **kwargs):
         json.JSONDecoder.__init__(
             self,
