@@ -11,3 +11,6 @@ Currently **opta** has the following algorithms implemented:
 
 - Random Search
 - Black Hole Optimization
+- Flower Pollination Algorithm
+- Particle Swarm Optimization
+- Explosion Search
