@@ -1,10 +1,10 @@
-name: CI/CD
+name: Test
 
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
   pull_request:
-    branches: [main]
+    branches: [main, dev]
 
 jobs:
   test:
@@ -32,26 +32,3 @@ jobs:
         with:
           fail_ci_if_error: true
           verbose: true
-  publish:
-    needs: test
-    runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' }}
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v3
-        with:
-          python-version: "3.10"
-      - name: Install poetry & dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install poetry
-          poetry install --no-dev
-      - name: Build package
-        run: poetry build
-      - name: Publish package to PyPi
-        env:
-          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
-        run: |
-          poetry config pypi-token.pypi $PYPI_TOKEN
-          poetry publish
