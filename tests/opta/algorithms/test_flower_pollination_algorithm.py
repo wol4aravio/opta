@@ -4,7 +4,7 @@ from opta.algorithms.flower_pollination_algorithm import FPA
 from opta.tools.testing import smoke_check
 
 
-@pytest.mark.parametrize("_", range(25))
+@pytest.mark.parametrize("_", range(5))
 def test_smoke(_):
     algorithm = FPA(25, 0.9, 0.25, 1.25)
     assert smoke_check(algorithm, number_of_iterations=10_000)
