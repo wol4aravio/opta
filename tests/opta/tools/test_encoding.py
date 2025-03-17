@@ -3,7 +3,7 @@ import json
 import numpy as np
 import pytest
 
-from opta.tools.coding import DecodeToNumpy, EncodeFromNumpy
+from opta.tools.custom_encoding import DecodeToNumpy, EncodeFromNumpy
 
 
 @pytest.mark.parametrize("_", range(25))

@@ -1,4 +1,4 @@
-from opta.algorithms.abstract import OptimizationAlgorithm
+from opta.algorithms.abstract_algorithm import OptimizationAlgorithm
 from opta.tools.vectors import (
     bound_vector,
     generate_vector_in_area,
