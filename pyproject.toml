@@ -17,6 +17,9 @@ pylint = "^2.13.9"
 pytest-cov = "^4.0.0"
 mypy = "^1.15.0"
 
+[tool.mypy]
+plugins = ["numpy.typing.mypy_plugin"]
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
