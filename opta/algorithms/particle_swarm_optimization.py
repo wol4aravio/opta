@@ -14,7 +14,7 @@ class ParticleSwarmOptimization(OptimizationAlgorithm):
         self.c1 = c1
         self.c2 = c2
 
-    def initialize(self, f, search_area):
+    def _initialize(self):
         self.pop = list()
         self.pop_best = list()
         self.pop_values = list()
@@ -23,14 +23,14 @@ class ParticleSwarmOptimization(OptimizationAlgorithm):
         self.global_best_value = np.inf
         self.velocities = list()
 
-        area_width = search_area[:, 1] - search_area[:, 0]
+        area_width = self._search_area[:, 1] - self._search_area[:, 0]
         velocity_area = np.array([-area_width, area_width]).T
         velocity_area = self.velocity_ratio * velocity_area
 
         for _ in range(self.pop_size):
-            x = generate_vector_in_area(search_area)
+            x = generate_vector_in_area(self._search_area)
             v = generate_vector_in_area(velocity_area)
-            y = f(x)
+            y = self._f(x)
 
             self.pop.append(x)
             self.pop_values.append(y)
@@ -53,7 +53,7 @@ class ParticleSwarmOptimization(OptimizationAlgorithm):
         )
         return v_new
 
-    def iterate(self, f, search_area):
+    def iterate(self):
         for i in range(self.pop_size):
             self.velocities[i] = self._update_velocity(
                 x=self.pop[i],
@@ -63,9 +63,9 @@ class ParticleSwarmOptimization(OptimizationAlgorithm):
             )
             self.pop[i] = bound_vector(
                 self.pop[i] + self.velocities[i],
-                search_area,
+                self._search_area,
             )
-            self.pop_values[i] = f(self.pop[i])
+            self.pop_values[i] = self._f(self.pop[i])
 
             if self.pop_values[i] < self.pop_best_values[i]:
                 self.pop_best_values[i] = self.pop_values[i]
@@ -74,7 +74,7 @@ class ParticleSwarmOptimization(OptimizationAlgorithm):
                     self.global_best_value = self.pop_values[i]
                     self.global_best = self.pop[i]
 
-    def terminate(self, _, __):
+    def terminate(self):
         return self.global_best
 
 

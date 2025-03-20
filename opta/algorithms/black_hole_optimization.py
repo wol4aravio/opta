@@ -37,17 +37,17 @@ class BlackHoleOptimization(OptimizationAlgorithm):
                 self.stars[i] = generate_vector_in_area(search_area)
         self._calculate_quality_levels(f)
 
-    def initialize(self, f, search_area):
-        self.stars = [generate_vector_in_area(search_area) for _ in range(self.N)]
-        self._calculate_quality_levels(f)
+    def _initialize(self):
+        self.stars = [generate_vector_in_area(self._search_area) for _ in range(self.N)]
+        self._calculate_quality_levels(self._f)
 
-    def iterate(self, f, search_area):
+    def iterate(self):
         self._black_hole_update()
-        self._move_stars(f, search_area)
+        self._move_stars(self._f, self._search_area)
         self._black_hole_update()
-        self._check_event_horizon(f, search_area)
+        self._check_event_horizon(self._f, self._search_area)
 
-    def terminate(self, _, __):
+    def terminate(self):
         return self.stars[self.black_hole_id]
 
 

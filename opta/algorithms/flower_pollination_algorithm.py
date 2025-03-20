@@ -29,10 +29,10 @@ class FlowerPollinationAlgorithm(OptimizationAlgorithm):
         self.best_x = None
         self.best_y = np.inf
 
-    def initialize(self, f, search_area):
+    def _initialize(self):
         for _ in range(self.pop_size):
-            self.pop.append(generate_vector_in_area(search_area))
-            self.pop_values.append(f(self.pop[-1]))
+            self.pop.append(generate_vector_in_area(self._search_area))
+            self.pop_values.append(self._f(self.pop[-1]))
             if self.pop_values[-1] < self.best_y:
                 self.best_y = self.pop_values[-1]
                 self.best_x = self.pop[-1]
@@ -43,7 +43,7 @@ class FlowerPollinationAlgorithm(OptimizationAlgorithm):
         S = U / math.pow(math.fabs(V), 1.0 / self.lambda_value)
         return S
 
-    def iterate(self, f, search_area):
+    def iterate(self):
         for i in range(self.pop_size):
             if random.uniform(0.0, 1.0) < self.switch_prob:
                 k = self.gamma * self._Levy()
@@ -55,13 +55,13 @@ class FlowerPollinationAlgorithm(OptimizationAlgorithm):
                 k = int(k)
                 eps = random.uniform(0.0, 1.0)
                 self.pop[i] = self.pop[i] + eps * (self.pop[j] - self.pop[k])
-            self.pop[i] = bound_vector(self.pop[i], search_area)
-            self.pop_values[i] = f(self.pop[i])
+            self.pop[i] = bound_vector(self.pop[i], self._search_area)
+            self.pop_values[i] = self._f(self.pop[i])
             if self.pop_values[i] < self.best_y:
                 self.best_y = self.pop_values[i]
                 self.best_x = self.pop[i]
 
-    def terminate(self, _, __):
+    def terminate(self):
         return self.best_x
 
 
