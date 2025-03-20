@@ -1,7 +1,7 @@
 import json
 from abc import ABC, abstractmethod
 
-from opta.tools.coding import DecodeToNumpy, EncodeFromNumpy
+from opta.tools.custom_encoding import DecodeToNumpy, EncodeFromNumpy
 
 
 class TerminationException(Exception):

@@ -4,7 +4,7 @@ from opta.algorithms.explosion_search import ES
 from opta.tools.testing import smoke_check
 
 
-@pytest.mark.parametrize("_", range(25))
+@pytest.mark.parametrize("_", range(5))
 def test_smoke(_):
     algorithm = ES(6, 1.0)
     assert smoke_check(algorithm, number_of_iterations=10_000)

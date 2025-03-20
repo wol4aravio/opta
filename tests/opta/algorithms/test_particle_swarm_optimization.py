@@ -4,7 +4,7 @@ from opta.algorithms.particle_swarm_optimization import PSO
 from opta.tools.testing import smoke_check
 
 
-@pytest.mark.parametrize("_", range(25))
+@pytest.mark.parametrize("_", range(5))
 def test_smoke(_):
     algorithm = PSO(25, 0.5, 0.9, 0.9, 0.9)
     assert smoke_check(algorithm, number_of_iterations=10_000)

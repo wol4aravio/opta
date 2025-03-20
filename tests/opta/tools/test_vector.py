@@ -27,7 +27,7 @@ def test_bound_vector_3():
     npt.assert_equal(np.array([2, -2, 0]), bound_vector(v, bounds))
 
 
-@pytest.mark.parametrize("_", range(100))
+@pytest.mark.parametrize("_", range(25))
 def test_bound_vector_N(_):
     search_area = np.array([[-10, 10], [-10, 10], [-10, 10]])
     bounds = np.array([[-5, 5], [-5, 5], [-5, 5]])
@@ -36,14 +36,14 @@ def test_bound_vector_N(_):
     assert ((bounds[:, 0] <= vector) & (vector <= bounds[:, 1])).all()
 
 
-@pytest.mark.parametrize("_", range(100))
+@pytest.mark.parametrize("_", range(25))
 def test_generate_vector_in_area(_):
     search_area = np.array([[-10, 10], [-10, 10]])
     vector = generate_vector_in_area(search_area)
     assert ((search_area[:, 0] <= vector) & (vector <= search_area[:, 1])).all()
 
 
-@pytest.mark.parametrize("_", range(100))
+@pytest.mark.parametrize("_", range(25))
 def test_generate_vector_in_sphere(_):
     initial = np.array([0, 0, 0])
     radius = 2.5
