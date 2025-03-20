@@ -30,6 +30,7 @@ jobs:
         run: |
           poetry run pytest --reruns 10 --cov=opta --cov-report=xml
       - name: Coveralls Parallel
+        if: ${{ github.ref == 'refs/heads/main' }}
         uses: coverallsapp/github-action@v2
         with:
           format: cobertura
