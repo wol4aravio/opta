@@ -2,14 +2,13 @@ name: Publish
 
 on:
   workflow_run:
-    workflows: ["Test"]
+    workflows: ["Coverage"]
     types: [completed]
     branches:
       - "main"
 
 jobs:
   publish:
-    needs: test
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' }}
     steps:
