@@ -38,7 +38,7 @@ jobs:
   coverage:
     name: "Uploading coverage via Coveralls"
     runs-on: ubuntu-latest
-    if: github.ref == "refs/heads/main"
+    if: ${{ github.ref == 'refs/heads/main' }}
     needs: test
     steps:
       - name: Coveralls Finished
