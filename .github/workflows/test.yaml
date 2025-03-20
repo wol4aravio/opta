@@ -37,6 +37,7 @@ jobs:
           parallel: true
   coverage:
     name: "Uploading coverage via Coveralls"
+    runs-on: ubuntu-latest
     if: github.ref == "refs/heads/main"
     needs: test
     steps:
