@@ -2,7 +2,7 @@ name: Publish
 
 on:
   workflow_run:
-    workflows: ["Coverage"]
+    workflows: ["Test"]
     types: [completed]
     branches:
       - "main"

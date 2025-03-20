@@ -28,4 +28,20 @@ jobs:
           poetry install
       - name: Testing
         run: |
-          poetry run pytest --reruns 5
+          poetry run pytest --reruns 10 --cov=opta --cov-report=xml
+      - name: Coveralls Parallel
+        uses: coverallsapp/github-action@v2
+        with:
+          format: python
+          flag-name: run-${{ join(matrix.*, '-') }}
+          parallel: true
+  coverage:
+    name: "Uploading coverage via Coveralls"
+    if: github.ref == "refs/heads/main"
+    needs: test
+    steps:
+      - name: Coveralls Finished
+        uses: coverallsapp/github-action@v2
+        with:
+          parallel-finished: true
+
