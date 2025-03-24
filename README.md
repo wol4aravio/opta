@@ -20,4 +20,3 @@ Currently **opta** has the following algorithms implemented:
 | Flower Pollination Algorithm  | FPA     | 0.7.*           |
 | Particle Swarm Optimization   | PSO     | 0.7.*           |
 | Explosion Search              | ES      | 0.7.*           |
-|-------------------------------|---------|-----------------|
